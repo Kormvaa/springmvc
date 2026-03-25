@@ -1,12 +1,12 @@
 package co.istad.kormva.a01m1springwebmvc.service;
 
-import ch.qos.logback.core.testUtil.RandomUtil;
 import co.istad.kormva.a01m1springwebmvc.domain.Category;
 import co.istad.kormva.a01m1springwebmvc.domain.Product;
 import co.istad.kormva.a01m1springwebmvc.dto.CreateProductRequest;
 import co.istad.kormva.a01m1springwebmvc.dto.ProductResponse;
 import co.istad.kormva.a01m1springwebmvc.repository.CategoryRepository;
 import co.istad.kormva.a01m1springwebmvc.repository.ProductRepository;
+import co.istad.kormva.a01m1springwebmvc.util.RandomUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -37,8 +37,8 @@ public class ProductServiceImpl implements ProductService {
                         .name(product.getName())
                         .description(product.getDescription())
                         .price(product.getPrice())
-                        .picture(product.getPicture())
-                        .isAvailable(product.getIsAvailable())
+                        .picture(product.getPic())
+                        .isAvailable(product.getIs_available())
                         .build());
     }
 
@@ -56,12 +56,12 @@ public class ProductServiceImpl implements ProductService {
         product.setName(createProductRequest.name());
         product.setDescription(createProductRequest.description());
         product.setPrice(createProductRequest.price());
-        product.setPicture(createProductRequest.picture());
+        product.setPic(createProductRequest.picture());
         product.setCategory(category);
 
         // Set generated data
         product.setCode(RandomUtil.generateProductCode());
-        product.setIsAvailable(true);
+        product.setIs_available(true);;
 
         // Save data into database
         productRepository.save(product);
@@ -71,8 +71,8 @@ public class ProductServiceImpl implements ProductService {
                 .name(product.getName())
                 .description(product.getDescription())
                 .price(product.getPrice())
-                .picture(product.getPicture())
-                .isAvailable(product.getIsAvailable())
+                .picture(product.getPic())
+                .isAvailable(product.getIs_available())
                 .build();
     }
 }
